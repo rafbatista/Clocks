@@ -1,6 +1,9 @@
 const express = require('express')
 const { MongoClient } = require('mongodb')
 const app = express()
+const path = require('path')
+
+app.use(express.static(path.join(__dirname, 'public')))
 
 MongoClient.connect('mongodb://localhost/clocks', (err, db) => {
   if (err) {
