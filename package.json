@@ -8,12 +8,11 @@
     "lint:html": "htmlhint ./**/*.html",
     "lint:css": "stylelint ./**/*.css",
     "lint:js": "eslint ./**/*.js",
-    "test": "npm run lint",
+    "test": "echo \"Error: no test specified\" && exit",
     "precommit": "npm test",
     "start": "node index.js",
     "seed": "node seed.js",
-    "watch": "nodemon index.js",
-    "test": "echo \"Error: no test specified\" && exit"
+    "watch": "nodemon index.js"
   },
   "repository": {
     "type": "git",
@@ -28,6 +27,7 @@
   "homepage": "https://github.com/rafbatista/clocks#readme",
   "dependencies": {
     "express": "^4.16.2",
+    "moment": "^2.19.1",
     "moment-timezone": "^0.5.13",
     "mongodb": "^2.2.33"
   },
