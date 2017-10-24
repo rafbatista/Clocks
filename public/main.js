@@ -26,9 +26,9 @@ const renderTimeAndZone = (zone) => {
   return $zoneContainer
 }
 
+const zones = fetch('http://localhost:3000/timezones').then(res => res.json())
 const fetchTimes = () => {
-  return fetch('http://localhost:3000/timezones')
-    .then(res => res.json())
+  zones
     .then(zones => convertTimeObject(zones))
     .then(zones => {
       $times.innerHTML = ''
