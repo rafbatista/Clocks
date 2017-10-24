@@ -7,31 +7,26 @@ const convertTimeObject = (zones) => {
     zone: zone.split('/')[1].replace('_', ' '),
     time: moment()
       .tz(zone)
-      .format('h:mm:ssA')
+      .format('h:mm:ss A')
   }))
 }
 
 const renderTimeAndZone = (zone) => {
 
   const $zoneContainer = document.createElement('div')
-  const $zoneTitle = document.createElement('div')
-  const $time = document.createElement('div')
+  const $zoneAndTime = document.createElement('div')
   $zoneContainer.classList.add('time-container')
 
-  $zoneTitle.classList.add('zone')
-  $zoneTitle.textContent = zone.zone
-
-  $time.classList.add('time')
-  $time.textContent = zone.time
+  $zoneAndTime.classList.add('zone-time')
+  $zoneAndTime.textContent = zone.zone + ' ' + zone.time
 
   $zoneContainer
-    .appendChild($zoneTitle)
-    .appendChild($time)
+    .appendChild($zoneAndTime)
 
   return $zoneContainer
 }
 
-setInterval(() => {
+const fetchTimes = () => {
   return fetch('http://localhost:3000/timezones')
     .then(res => res.json())
     .then(zones => convertTimeObject(zones))
@@ -41,4 +36,6 @@ setInterval(() => {
         .map(renderTimeAndZone)
         .forEach(zone => $times.appendChild(zone))
     })
-}, 16)
+}
+
+setInterval(fetchTimes, 16)
